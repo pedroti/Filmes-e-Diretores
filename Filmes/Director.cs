@@ -4,7 +4,7 @@ namespace Filmes
 {
     class Director
     {
-        public string movieId;
+        public string id;
         public string name;
 
         public void Show()

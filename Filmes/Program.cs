@@ -21,7 +21,7 @@ namespace Filmes
                     {
                         Director director = new Director();
                         var informations = line.Split(',');
-                        director.movieId = informations[0];
+                        director.id = informations[0];
                         director.name = informations[1];
                         directors.Add(director);
                         director.Show();
@@ -54,15 +54,14 @@ namespace Filmes
             ShowMoviesForEachDirector(movies, directors);
             foreach (var movie in movies)
             {
-                IsIdDirectorInDirectors(movie.id, directors);
+                IsIdDirectorInDirectors(movie.directorId, directors);
             }
            
-            var a = 0;
         }
 
         private static void IsIdDirectorInDirectors(string id, List<Director> directors)
         {
-            Director director = directors.Find(x => x.movieId == id);
+            Director director = directors.Find(x => x.id == id);
             if (director != null)
             {
                 Console.WriteLine("It is");
@@ -76,11 +75,14 @@ namespace Filmes
         {
             foreach (var director in directors)
             {
-                Movie movie = movies.Find(x => x.id == director.movieId);
-                Console.WriteLine("Movie: ");
-                movie.Show();
-                Console.WriteLine("Director: ");
-                director.Show();
+                Movie movie = movies.Find(x => x.directorId == director.id);
+                if (movie != null)
+                {
+                    Console.WriteLine("Movie: ");
+                    movie.Show();
+                    Console.WriteLine("Director: ");
+                    director.Show();
+                }
             }
         }
     }
